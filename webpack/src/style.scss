@@ -1,0 +1,49 @@
+.form {
+    width: 300px;
+    margin: 20px auto;
+}
+
+
+.list {
+    margin-top: 10px;
+    padding: 0;
+    list-style: none;
+    display: block;
+}
+
+.list-li {
+    width: 285px;
+    display: block;
+    margin-top: 10px;
+    position: relative;
+    background: rgb(197, 240, 240);
+    text-overflow: hidden;
+   
+   
+   
+}
+
+.btn {
+    background:rgb(101, 224, 101);
+    &:hover {
+        background: rgb(58, 206, 58);
+    }
+}
+
+.btn-reset {
+    background: rgb(243, 243, 30);
+    &:hover {
+        background: rgb(211, 211, 27);
+    }
+}
+
+.btn-delete {
+    display: inline-block;
+    align-self: end;
+    position: absolute;
+    right: 0;
+    background: rgb(255, 164, 164);
+    &:hover {
+        background: rgb(247, 139, 139);
+    }
+}
