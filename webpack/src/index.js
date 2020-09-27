@@ -1,0 +1,61 @@
+import './style.css';
+import './style.scss';
+import uniqid from 'uniqid';
+
+const form = document.querySelector('.form');
+const input = document.querySelector('.input');
+const list = document.querySelector('.list');
+const btnReset = document.querySelector('.btn-reset');
+
+class ToDoForm {
+  todos = [];
+  liValue = [];
+
+  addToDo(text) {
+    const todo = {
+      text,
+      id: uniqid(),
+      done: true,
+    };
+
+    this.todos.push(todo);
+    this.liValue.push(todo.text);
+    return todo;
+  }
+
+  deleteToDo(id) {
+    this.todos = this.todos.filter((todo) => todo.id !== id);
+  }
+}
+const todoList = new ToDoForm();
+
+const createLi = ({ text, id }) => {
+  const liElement = document.createElement('li');
+  liElement.classList.add('list-li');
+  liElement.innerHTML = text;
+  liElement.id = id;
+
+  const deleteBtn = document.createElement('button');
+  deleteBtn.innerHTML = 'Delete';
+  deleteBtn.classList.add('btn-delete');
+  deleteBtn.addEventListener('click', () => {
+    todoList.deleteToDo(id);
+    document.getElementById(id).remove();
+  });
+
+  liElement.appendChild(deleteBtn);
+  return liElement;
+};
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  list.classList.add('list');
+  const todo = todoList.addToDo(input.value);
+  const li = createLi(todo);
+  list.insertAdjacentElement('beforeend', li);
+  localStorage.setItem('Todos', todoList.liValue);
+});
+
+btnReset.addEventListener('click', () => {
+  list.innerHTML = '';
+});
