@@ -9,7 +9,6 @@ const btnReset = document.querySelector('.btn-reset');
 
 class ToDoForm {
   todos = [];
-  liValue = [];
 
   addToDo(text) {
     const todo = {
@@ -19,7 +18,7 @@ class ToDoForm {
     };
 
     this.todos.push(todo);
-    this.liValue.push(todo.text);
+    localStorage.setItem('Todos', JSON.stringify(this.todos));
     return todo;
   }
 
@@ -53,7 +52,6 @@ form.addEventListener('submit', (e) => {
   const todo = todoList.addToDo(input.value);
   const li = createLi(todo);
   list.insertAdjacentElement('beforeend', li);
-  localStorage.setItem('Todos', todoList.liValue);
 });
 
 btnReset.addEventListener('click', () => {
